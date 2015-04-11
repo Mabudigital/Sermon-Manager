@@ -1,25 +1,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//ES" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="es" xml:lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, usr-scalable=no, minimal-ui">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="Sermon Manager">
-<link rel="apple-touch-icon" href="custom_icon.png"/>
+<link rel="apple-touch-icon" href="icon.png"/>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <title>Sermon Manager</title>
 <link rel="icon" href="icon.png"/>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link href="jquery-mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+<!--<link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="jquery-mobile/jquery.mobile.structure-1.4.5.min.css" />-->
 <script src="jquery-mobile/jquery-1.11.1.min.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript" src="tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
 $(document).bind("mobileinit", function(){
   $.mobile.defaultPageTransition="slide";
    $.mobile.allowCrossDomainPages = true;
- // localStorage.removeItem("username");
 });
+//localStorage.setItem("username","mabudigital@yahoo.com");
 username = localStorage.getItem("username");
 $(function () {
   $("[data-role=panel]").enhanceWithin().panel();
@@ -31,13 +33,13 @@ $(function () {
 </head>
 <body>
 <div data-role="page" id="page">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
 		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
 	</div>
 	<div data-role="content">
-		<h3 class="welcome"></h3>
-		<ul data-role="listview" data-inset="true">
+		<h3 class="welcome title"></h3>
+		<ul data-role="listview">
 			<li>
 				<a href="#sermon-list">
 					<h3>Mis sermones</h3>
@@ -50,7 +52,7 @@ $(function () {
 				</a>
 			</li>
 			<li>
-				<a id="bibleBtn" href="#biblia">
+				<a id="bibleBtn" href="#bible">
 					<h3>Biblia</h3>
 				</a>
 			</li>
@@ -66,36 +68,37 @@ $(function () {
 			</li>
 		</ul>
 	</div>
-	<div style="text-align:center;" >
-		<h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
-	</div>
+	
 </div>
 <!--/Main page-->
 <!-- Sermon list-->
 <div data-role="page" id="sermon-list">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#page" data-rel="reverse"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
-		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a class="blue ui-btn-left" data-shadow="false" href="#page" data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
+		<a class="blue ui-btn-right" id="search_btn" data-shadow="false" href="#"><img src="images/ic_action_search.png"/></a>
 	</div>
 	<div data-role="content">
-	<h3>Mis sermones</h3>
+	<h3 class="title">Mis sermones</h3>
 		<input type="text" data-type="search" id="filterable-input"/>
-		<ul id="sermonlist" data-role="listview" data-inset="true" data-filter="true" data-input="#filterable-input"></ul>
+		<ul id="sermonlist" data-role="listview" data-filter="true" data-input="#filterable-input"></ul>
 	</div>
-	
-	
-	<div style="text-align:center;" >
-		<h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
-	</div>
+	<!--options popup-->
+<div data-role="popup" data-corners="false" id="optionspopup" class="options-popup">
+	<ul data-role="listview">
+		<li><a  href="#editsermon"><h3>Editar</h3></a></li>
+		<li><a id="delete-sermon" href="#" data-ajax="true"><h3>Borrar</h3></a></li>
+	</ul>
+</div>
+<!--/options popup-->
 </div>
 <!-- /Sermin list-->
 <!-- Sermon content-->
 <div data-role="page" id="sermon-content">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#" data-rel="back"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
-		<a class="blue ui-btn-right" data-shadow="false" href="#optionspanel"><img src="images/ic_action_settings.png"/></a>
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a class="blue ui-btn-left" data-shadow="false" href="#sermon-list" data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
+		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
 	</div>
 	<div data-role="content" >
 		<div id="sermon-content-content" class="content-background"></div>
@@ -109,21 +112,18 @@ $(function () {
 			$('#sermonpassage').load('http://api.biblia.com/v1/bible/content/'+bibleVersion+'.html?passage='+sv+'&style=fullyFormatted&culture=es&key=5a5aa44d5d9880be2eced64ce8609b24');
 		};
 	</script>
-	<div style="text-align:center;" >
-		<h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
-	</div>
 </div>
-<!-- /Sermin content-->
+<!-- /Sermon content-->
 <!-- Create sermon-->
 <div data-role="page" id="createsermon">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#page" data-rel="reverse"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a class="blue ui-btn-left" data-shadow="false" href="#page" data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
 		<a class="blue ui-btn-right" data-shadow="false" href="#biblepanel"><img src="images/ic_action_settings.png"/></a>
 	</div>
 	<div data-role="content">
 	<h3>Crear sermón</h3>
-		<form id ="add_sermon_form" name="add_sermon_form" class="content-background" data-ajax="true">
+		<form id ="add_sermon_form" name="add_sermon_form">
 			<div data-role="fieldcontain">
 				<label for="textinput">Título:</label>
 				<input type="text" name="title" id="title" value=""/>
@@ -134,41 +134,33 @@ $(function () {
 				<label for="textarea">Contenido:</label>
 				<textarea cols="40" rows="8" name="contenido" id="content"></textarea>
 			</div>
-			<div data-role="fieldcontain">
-				<label for="textarea">Notas:</label>
-				<textarea cols="40" rows="8" name="notes"  id="notes"></textarea>
-			</div>
 			<input type="hidden" name="create_sermon" id="create_sermon" value="add_sermon_form"/>
 			<input type="hidden" id ="acc_number" name="account" value=""/>
 			<input type="submit" value="Guardar" />
 		</form>
 	</div>
-	<div style="text-align:center;" >
-		<h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
-	</div>
 	<!--Bible panel-->
-	<div data-role="panel" id="biblepanel" data-position="right" data-display="overlay" data-position-fixed="false">
+	<div data-role="panel" id="biblepanel" data-position="right" data-display="overlay" data-position-fixed="false" data-theme="b">
 		<h2 class="connection">Herramientas </h2>
-		<ul data-role="listview" data-inset="true">
+		<ul data-role="listview" data-inset="false">
 			<li><a  href="#biblia"><h3>Biblia</h3></a></li>
 			<li><a href="#reference"><h3>Referencias</h3></a></li>
 			<li><a href="#" data-rel="close"><h3>Cerrar</h3></a></li>
 		</ul>
 	</div>
 	<!--/Bible panel-->
-	
 </div>
 <!-- /Create sermont-->
-<!-- Create sermon-->
+<!-- Edit sermon-->
 <div data-role="page" id="editsermon">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#sermon-list" data-rel="reverse"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
-		<a class="blue ui-btn-right" data-shadow="false" href="#"><img src="images/ic_action_settings.png"/></a>
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a class="blue ui-btn-left" data-shadow="false" href="#page" data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
+		<a class="blue ui-btn-right" data-shadow="false" href="#biblepanel"><img src="images/ic_action_settings.png"/></a>
 	</div>
 	<div data-role="content">
 	<h3>Editar sermón</h3>
-		<form id="edit_sermon_form" class="content-background" data-ajax="true">
+		<form id="edit_sermon_form" name="edit_sermon_form">
 			<div data-role="fieldcontain">
 				<label for="textinput">Título:</label>
 				<input type="text" name="title" id="editTitle" value=""/>
@@ -177,145 +169,42 @@ $(function () {
 			</div>
 			<div data-role="fieldcontain">
 				<label for="textarea">Contenido:</label>
-				<textarea cols="40" rows="8" name="econtenido" id="editContent"></textarea>
-			</div>
-			<div data-role="fieldcontain">
-				<label for="textarea">Notas:</label>
-				<textarea cols="40" rows="8" name="notes"  id="editNotes"></textarea>
+				<textarea cols="40" rows="8" name="edcontenido" id="editContent"></textarea>
 			</div>
 			<input type="hidden" name="MM_update" id="MM_update" value="edit_sermon_form"/>
 			<input type="hidden" id="editId" name="id" value=""/>
 			<input type="submit" value="Guardar" />
 		</form>
 	</div>
-	<div style="text-align:center;" >
-		<h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
+	<!--Bible panel-->
+	<div data-role="panel" id="biblepanel" data-position="right" data-display="overlay" data-position-fixed="false" data-theme="b">
+		<h2 class="connection">Herramientas </h2>
+		<ul data-role="listview" data-inset="false">
+			<li><a  href="#biblia"><h3>Biblia</h3></a></li>
+			<li><a href="#reference"><h3>Referencias</h3></a></li>
+			<li><a href="#" data-rel="close"><h3>Cerrar</h3></a></li>
+		</ul>
 	</div>
+	<!--/Bible panel-->
 </div>
-<!-- /Create sermont-->
-<!--Bible content-->
-<div data-role="page" id="biblia">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#e" data-rel="back"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
+<!-- /Edit sermont-->
+<!--Bible-->
+<div data-role="page" id="bible">
+<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a href="#page" class="blue ui-btn-left" data-shadow="false" data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
 		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
 	</div>
-	<div data-role="content">
-		<script type="text/javascript">
-			$(document).ready(function(){
-				url= 'http://api.biblia.com/v1/bible/contents/'+bibleVersion+'?culture=es&key=5a5aa44d5d9880be2eced64ce8609b24';
-				
-				$.getJSON(url,function(data){
-					var output='';
-					for (var i in data.books){
-						var libro = data.books[i].passage;
-						//translations
-						if(libro =="Genesis"){libro ="Génesis"};
-						if(libro =="Exodus"){libro ="Éxodo"};
-						if(libro =="Leviticus"){libro ="Levítico"};
-						if(libro =="Numbers"){libro ="Números"};
-						if(libro =="Deuteronomy"){libro ="Deuteronomio"};
-						if(libro =="Joshua"){libro ="Josué"};
-						if(libro =="Judges"){libro ="Jueces"};
-						if(libro =="Ruth"){libro ="Rut"};
-						if(libro =="1 Samuel"){libro ="1 Samuel"};
-						if(libro =="2 Samuel"){libro ="2 Samuel"};
-						if(libro =="1 Kings"){libro ="1 Reyes"};
-						if(libro =="2 Kings"){libro ="2 Reyes"};
-						if(libro =="1 Chronicles"){libro ="1 Crónicas"};
-						if(libro =="2 Chronicles"){libro ="2 Crónicas"};
-						if(libro =="Ezra"){libro ="Esdras"};
-						if(libro =="Nehemiah"){libro ="Nehemías"};
-						if(libro =="Esther"){libro ="Ester"};
-						if(libro =="Job"){libro ="Job"};
-						if(libro =="Psalms"){libro ="Salmos"};
-						if(libro =="Proverbs"){libro ="Proverbios"};
-						if(libro =="Ecclesiastes"){libro ="Eclesiastés"};
-						if(libro =="Song of Solomon"){libro ="Cantar de los Cantares"};
-						if(libro =="Isaiah"){libro ="Isaías"};
-						if(libro =="Jeremiah"){libro ="Jeremías"};
-						if(libro =="Lamentations"){libro ="Lamentaciones"};
-						if(libro =="Ezekiel"){libro ="Ezequiel"};
-						if(libro =="Daniel"){libro ="Daniel"};
-						if(libro =="Hosea"){libro ="Osea"};
-						if(libro =="Joel"){libro ="Joel"};
-						if(libro =="Amos"){libro ="Amós"};
-						if(libro =="Obadiah"){libro ="Abdías"};
-						if(libro =="Jonah"){libro ="Jonás"};
-						if(libro =="Micah"){libro ="Miqueas"};
-						if(libro =="Nahum"){libro ="Nahún"};
-						if(libro =="Habakkuk"){libro ="Habacuc"};
-						if(libro =="Zephaniah"){libro ="Sofonías"};
-						if(libro =="Haggai"){libro ="Hageo"};
-						if(libro =="Zechariah"){libro ="Zacarías"};
-						if(libro =="Malachi"){libro ="Malaquías"};
-						if(libro =="Matthew"){libro ="Mateo"};
-						if(libro =="Mark"){libro ="Marcos"};
-						if(libro =="Luke"){libro ="Lucas"};
-						if(libro =="John"){libro ="Juan"};
-						if(libro =="Acts"){libro ="Hechos"};
-						if(libro =="Romans"){libro ="Romanos"};
-						if(libro =="1 Corinthians"){libro ="1 Corintios"};
-						if(libro =="2 Corinthians"){libro ="2 Corintios"};
-						if(libro =="Galatians"){libro ="Gálatas"};
-						if(libro =="Ephesians"){libro ="Efesios"};
-						if(libro =="Philippians"){libro ="Filipenses"};
-						if(libro =="Colossians"){libro ="Colosenses"};
-						if(libro =="1 Thessalonians"){libro ="1 Tesalonicenses"};
-						if(libro =="2 Thessalonians"){libro ="2 Tesalonicenses"};
-						if(libro =="1 Timothy"){libro ="1 Timoteo"};
-						if(libro =="2 Timothy"){libro ="2 Timoteo"};
-						if(libro =="Titus"){libro ="Tito"};
-						if(libro =="Philemon"){libro ="Filemón"};
-						if(libro =="Hebrews"){libro ="Hebreos"};
-						if(libro =="James"){libro ="Santiago"};
-						if(libro =="1 Peter"){libro ="1 Pedro"};
-						if(libro =="2 Peter"){libro ="2 Pedro"};
-						if(libro =="1 John"){libro ="1 Juan"};
-						if(libro =="2 John"){libro ="2 Juan"};
-						if(libro =="3 John"){libro ="3 Juan"};
-						if(libro =="Jude"){libro ="Judas"};
-						if(libro =="Revelation"){libro ="Apocalipsis"};
-					output+="<li><a  id ='chapter' href='#chapters' onclick='bookId(\"" +i+"\",\""+data.books[i].passage+"\");'>"+libro+"</a></li>";
-					}
-					$('#bookList').append(output);
-					$('#bookList').listview().listview("refresh");
-				});
-			});
-			
-		</script>
-		<div id="biblecontent">
-			<input type="text" data-type="search" id="book-input">
-			<ul id="bookList" data-role="listview" data-inset="true" data-filter="true" data-input="#book-input"></ul>
-		</div>
-	</div>
-	<div style="text-align:center;" >
-		<h6>© <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
-	</div>
-</div>
-<!--/Bible content>
-<!-- Bible chapters-->
-<div data-role="page" id="chapters">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left clearchapters" data-shadow="false" href="#" data-rel="back"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
-		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
-	</div>
-	<div data-role="content">
-		<script type="text/javascript">
-			function bookId(number,name){
-				chapters ={
-					bookNumber:number,
-					bookName:name,
-					version:bibleVersion,
-					};
-				localStorage.setItem("capitulos",JSON.stringify(chapters));
-				var retrieve = localStorage.getItem("capitulos");
-				var retrieve2 = JSON.parse(retrieve);
-				var bookNumber = retrieve2.bookNumber;
-				var bookName = retrieve2.bookName;
-				url= 'http://api.biblia.com/v1/bible/contents/'+bibleVersion+'?culture=es&key=5a5aa44d5d9880be2eced64ce8609b24';
-				var libro = bookName;
+	<div data-role="content" >
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		url= 'http://api.biblia.com/v1/bible/contents/'+bibleVersion+'?culture=es&key=5a5aa44d5d9880be2eced64ce8609b24';
+		$.getJSON(url,function(data){
+			var output='';
+			for (var i in data.books){
+				var libro = data.books[i].passage;
+				//translations
 				if(libro =="Genesis"){libro ="Génesis"};
 				if(libro =="Exodus"){libro ="Éxodo"};
 				if(libro =="Leviticus"){libro ="Levítico"};
@@ -381,45 +270,38 @@ $(function () {
 				if(libro =="2 John"){libro ="2 Juan"};
 				if(libro =="3 John"){libro ="3 Juan"};
 				if(libro =="Jude"){libro ="Judas"};
-				if(libro =="Revelation"){libro ="Apocalipsis"};
-				$('#biblechapters h2').html(libro);
-				$.getJSON(url,function(chdata){
-					$.each(chdata.books[bookNumber].chapters,function(i,chapter){
-						//var chapt = chapter.passage;
-						//chapt = chapt.replace(bookName+" ","");
-						chapt=i+1;
-						$('#biblechapters .chapters').append("<a href='#contentofchapter' onclick='chapterId(\""+chapt+"\",\""+bookName+"\");'>"+chapt+"</a>");
-					});
-				});
+				if(libro =="Revelation"){libro ="Apocalipsis"};	
+				output+="<div data-role='collapsible' data-inset='false' data-iconpos='right'>";
+					output+="<h3>"+libro+"</h3>";
+					output+="<div class='chapters'>";
+					$.each(data.books[i].chapters,function(chi,chapter){
+						chapt=chi+1;
+						output+="<a href='#contentofchapter' onclick='chapterId(\""+chapt+"\",\""+libro+"\");'>"+chapt+"</a>";
+						});
+					output+="</div>";
+				output+="</div>";
 			}
-			$('.clearchapters').on(" click",function(){
-				$('#biblechapters .chapters').html("");
-			});
-		</script>
-	<div id="biblechapters" class="content-background">
-		<h2></h2>
-		<div class="chapters"></div>
+			$('#bookList').append(output);
+		});
+	});
+	</script>
+	<div id="bookList"></div>
 	</div>
-  </div>
-  <div style="text-align:center;" >
-    <h6>© <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
-  </div>
 </div>
-<!--/Bible chapters-->
+<!--/Bible-->
 <!--bible chapter content-->
 <div data-role="page" id="contentofchapter">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#" data-rel="back"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
-		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a class="blue ui-btn-left" data-shadow="false" href="#bible"  data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
 	</div>
 	<div data-role="content">
 	<script type="text/javascript">
 	function chapterId(chnumber,bname){
 		chapterContent ={
-			newchaptnumber:chnumber,
-			newbookname:bname,
-			version:bibleVersion,
+		newchaptnumber:chnumber,
+		newbookname:bname,
+		version:bibleVersion
 		}
 		console.log("newch:"+chnumber+" NB: "+bname);
 		localStorage.setItem("biblechaptercontent",JSON.stringify(chapterContent));
@@ -507,26 +389,23 @@ $(function () {
 		});
 	}
 	</script>
-	<div id="chapter-content-wrapper" class="content-background">
-		<h2></h2>
-		<div class="content"></div>
+		<div id="chapter-content-wrapper">
+			<h2></h2>
+			<div class="content"></div>
+		</div>
 	</div>
-  </div>
-  <div style="text-align:center;" >
-    <h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
-  </div>
 </div>
-<!--/bible chapter content-->
+<!--/chapter content-->
 <!-- Reference-->
 <div data-role="page" id="reference">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#" data-rel="back"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a href="#page" class="blue ui-btn-left" data-shadow="false" data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
 		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
 	</div>
 	<div id="referencecontent" data-role="content" >
 		<h3>Referencia</h3>
-		<div class="content-background">
+		<div>
 			<div data-role="fieldcontain">
 				<label for="key">Tema: </label>
 				<input type="text" name="key" id="key"  value="" />
@@ -568,18 +447,13 @@ $(function () {
 					<div id="passage" data-role="content"></div>
 			</div>
 		</div>
-		
-	</div>
-	<div style="text-align:center;" >
-		<h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
 	</div>
 </div>
-<!--/Reference-->
 <!-- license-->
 <div data-role="page" id="license">
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<a class="blue ui-btn-left" data-shadow="false" href="#" data-rel="back"><img src="images/ic_action_back.png"/></a>
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
+<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<a class="blue ui-btn-left" data-shadow="false" href="#" data-rel="back" data-direction="reverse"><img src="images/ic_action_back.png"/></a>
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
 		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
 	</div>	
 	<div data-role="content" class="content-background">
@@ -601,47 +475,13 @@ $(function () {
 	</div>
 </div>
 <!-- /license-->
-<!--config panel-->
-<div data-role="panel" id="config_panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
-	<ul id="config" data-role="listview">
-		<li data-role="list-divider">Configuración</li>
-		<li><h3>Versión de la biblia</h3>
-			<div class="ui-field-contain">
-				<select id="bible-version-select" name="bible-version-select" data-mini="true">
-					<option value="RVR60">Reina Valera Revisada(1960)</option>
-					<option value="RVA">Reina Valera Actializada</option>
-				</select>
-				<input type="hidden" name="bible-version" value="bible-version-form"/>
-				<input type="hidden" name="userId" id="userId" value=""/>
-				<input id="bible-version-submit" type="button" data-mini="true" value="Guardar"/>
-			</div>
-		</li>
-		<li><a href="#license">Acerca de esta aplicación</a></li>
-		<li><a id="logout" href="#">Desconectar</a></li>
-		<li><a href="#" data-rel="close">Cerrar</a></li>
-	</ul>
-	<div id="savedPopup"  data-role="popup" data-theme="a" data-transition="slidedown" data-position="origin">
-		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right" >Close</a>
-		<p style="text-align:center;">Versión guardada</p>
-	</div>
-</div>
-<!--options panel-->
-<div data-role="panel" id="optionspanel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
-	<h2>Herramientas </h2>
-	<ul data-role="listview" data-inset="true">
-		<li><a  href="#editsermon"><h3>Editar</h3></a></li>
-		<li><a id="delete-sermon" href="#" data-ajax="true"><h3>Borrar</h3></a></li>
-		<li><a href="#" data-rel="close"><h3>Cerrar</h3></a></li>
-	</ul>
-</div>
-<!--/options panel-->
 <div data-role="page" id="login" >
-	<div data-role="header" data-position="fixed" data-id="persistent">
-		<div class="logo"><img src="images/SermonManagerLogo.jpg"/></div>
-	</div>	
+	<div data-role="header" data-position="fixed" data-id="persistent" data-tap-toggle="false" data-hide-during-focus="false" data-theme="a">
+		<div class="logo"><img src="images/SermonManagerLogo.png"/></div>
+	</div>
 	<div data-role="content" >
-		<div id="login-section" class="content-background" style="margin-top:25%;">
-			<h3>Acceder a su cuenta</h3>
+		<div id="login-section" style="margin-top:25%;">
+			<h3 class="title">Acceder a su cuenta</h3>
 			<form name="login-form" id="login-form" method="post"  data-ajax="true">
 				<div style="padding:10px 20px;">
 				  <label for="un" class="ui-hidden-accessible">Email:</label>
@@ -653,13 +493,12 @@ $(function () {
 				  <button type="submit" data-theme="b">Entrar</button>
 				</div>
 			</form>
-			<p><a href="#" id="register-link">Crear cuenta</a></p>
+			<p><a href="#" id="register-link" style="text-align:center;display:block;">Crear cuenta</a></p>
 		</div>
-		<div id="register-section" class="content-background" style="margin-top:25%;">
-			<h3>Registrarse</h3>
+		<div id="register-section">
 			<form name="register-form" id="register-form" method="post"  data-ajax="true">
 				<div style="padding:10px 20px;">
-				  <h3>¡Bienvenido! Por favor registrese antes de comenzar.</h3>
+				  <h3 class="title">¡Bienvenido! Por favor registrese antes de comenzar.</h3>
 				  <label for="un" class="ui-hidden-accessible">Nombre:</label>
 				  <input type="text" name="fname" id="fname" value="" placeholder="Nombre" data-theme="a" class="req" />
 				  
@@ -685,17 +524,38 @@ $(function () {
 				  <button type="submit" data-theme="b">Registrarme</button>
 				</div>
 			</form>
-			<p><a href="#" id="login-link">Accesar a su cuenta</a></p>
+			<p><a href="#" id="login-link" style="text-align:center;display:block;">Accesar a su cuenta</a></p>
 		</div>
 	</div>
-	<div style="text-align:center;" >
-		<h6>&copy; <script>document.write(new Date().getFullYear());</script> Wibxi All rights reserved.</h6>
+</div>
+<!--config panel-->
+<div data-role="panel" id="config_panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="b">
+	<ul id="config" data-role="listview">
+		<li data-role="list-divider">Configuración</li>
+		<li><h3>Versión de la biblia</h3>
+			<div class="ui-field-contain">
+				<select id="bible-version-select" name="bible-version-select" data-mini="true">
+					<option value="RVR60">Reina Valera Revisada(1960)</option>
+					<option value="RVA">Reina Valera Actializada</option>
+				</select>
+				<input type="hidden" name="bible-version" value="bible-version-form"/>
+				<input type="hidden" name="userId" id="userId" value=""/>
+				<input id="bible-version-submit" type="button" data-mini="true" value="Guardar"/>
+			</div>
+		</li>
+		<li><a href="#license">Acerca de esta aplicación</a></li>
+		<li><a id="logout" href="#">Desconectar</a></li>
+		<li><a href="#" data-rel="close">Cerrar</a></li>
+	</ul>
+	<div id="savedPopup"  class="ui-content" data-role="popup" data-transition="slidedown" data-position="origin" data-theme="b">
+		<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" >Close</a>
+		<p style="text-align:center;">Versión guardada</p>
 	</div>
 </div>
+<!--config panel-->
 <div id="result"></div>
 <script type="text/javascript">
 tinymce.init({
-	//document_base_url: "http://Wibxicom/apps/sermonapp/",
 	relative_urls : 0,
 	remove_script_host : 0,
 	mode: "exact",
@@ -706,25 +566,20 @@ tinymce.init({
 	plugins: [
 		 "advlist autolink lists link charmap hr anchor paste",
        "wordcount visualchars"
-    //   "insertdatetime media nonbreaking save table contextmenu directionality",
-     // "emoticons template  textcolor"
 	],
-	//image_advtab:true,
 	toolbar1: "undo redo | bold italic | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | verse",
-   // toolbar2: "",
-	//autosave_ask_before_unload:false,
 	theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
     font_size_style_values: "12px,13px,14px,16px,18px,20px",
 	extended_valid_elements : "a[href|onclick]",
 	setup : function(ed) {
         // Add a custom button
         ed.addButton('verse', {
-            title : 'Add Verse',
+            title : 'Add passage',
             image : 'images/bible_btn.png',
             onclick : function() {
 					ed.windowManager.open({
-					title:'Añada un Versículo',
-					url : 'add-verse.html',
+					title:'Añada un pasage bíblico',
+					url : 'add-passage.html',
 					//width : 500,
 					height : 300
 				});
@@ -737,8 +592,8 @@ tinymce.init({
 </script>
 <script type="text/javascript">
 	console.log("username:"+username);
-	sermonDataUrl = 'http://wibxi.com/apps/Sermon_Manager/www/sermondata.php?u='+username;
-	userDataUrl = 'http://wibxi.com/apps/Sermon_Manager/www/userdata.php?u='+username;
+	sermonDataUrl = 'http://wibxi.com/apps/SM/www/sermondata.php?u='+username;
+	userDataUrl = 'http://wibxi.com/apps/SM/www/userdata.php?u='+username;
 	$("#userId").val(username);
 	bv="";
 	bibleVersion=localStorage.getItem("bibleVersion");
@@ -750,6 +605,9 @@ tinymce.init({
 			bibleVersion=localStorage.getItem("bibleVersion");
 			$("#savedPopup").popup("open");
 			$("#config_panel").panel( "close" );
+		})
+		$("#search_btn").on("click",function(){
+			$(".ui-input-search").toggle();
 		})
 		if(username != null){
 			$.mobile.changePage("#page");
@@ -776,12 +634,12 @@ tinymce.init({
 				dataString = $("#login-form").serialize();
 			  $.ajax({
 					type: 'POST',
-					url: 'http://wibxi.com/apps/Sermon_Manager/www/login.php',
+					url: 'http://wibxi.com/apps/SM/www/login.php',
 					data: dataString,
 					// Mostramos un mensaje con la respuesta de PHP
 					success: function(data) {
 						
-						 $('#result').hide().html(data).fadeIn(300);
+						 $('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
 						}
 					 })        
 				return false;
@@ -801,68 +659,48 @@ tinymce.init({
 				dataString = $("#register-form").serialize();
 			  $.ajax({
 					type: 'POST',
-					url: 'http://wibxi.com/apps/Sermon_Manager/www/register.php',
+					url: 'http://wibxi.com/apps/SM/www/register.php',
 					data: dataString,
 					// Mostramos un mensaje con la respuesta de PHP
 					success: function(data) {
 					
-						 $('#result').hide().html(data).fadeIn(300);
-						}
-					 })        
-				return false;
-				});
-				$('#add_sermon_form').on('submit',function(e){
-				tinyMCE.triggerSave();
-				var ed = tinyMCE.activeEditor.getContent();
-				var title=$('#title').val();
-				var tag=$('#tag').val();
-				var content= escape(ed);
-				var notes =$('#notes').val();
-				var create=$('#create_sermon').val();
-				var account=$('#acc_number').val();
-				e.preventDefault();
-				dataString ="title="+title+"&tag="+tag+"&contenido="+content+"&notes="+notes+"&create_sermon="+create+"&account="+account,
-				//dataString = $("#edit_sermon_form").serialize();
-			  $.ajax({
-					type: 'POST',
-					url: 'http://wibxi.com/apps/Sermon_Manager/www/savesermon.php',
-					data: dataString,
-					// Mostramos un mensaje con la respuesta de PHP
-					success: function(data) {
-						
 						 $('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
 						}
 					 })        
 				return false;
 				});
-				// Interceptamos el evento submit
-				
-			$('#edit_sermon_form').on('submit',function(e){
-				tinyMCE.triggerSave();
-				var ed = tinyMCE.activeEditor.getContent();
-				var title=$('#editTitle').val();
-				var tag=$('#editTag').val();
-				var content= escape(ed);
-				var id =$('#editId').val();
-				var update=$('#MM_update').val();
-				var notes =$('#editNotes').val();
-				e.preventDefault();
-				dataString ="title="+title+"&tag="+tag+"&contenido="+content+"&notes="+notes+"&id="+id+"&MM_update="+update, //
-				//dataString = $("#edit_sermon_form").serialize();
-			  $.ajax({
-					type: 'POST',
-					url: 'http://wibxi.com/apps/Sermon_Manager/www/save_edit_sermon.php',
-					data: dataString,
-					// Mostramos un mensaje con la respuesta de PHP
-					success: function(data) {
-						
-						 $('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
-						}
-					 })        
-				return false;
-				});
-				
+		//save sermom
+		$('#add_sermon_form').on('submit',function(e){
+			e.preventDefault();
+			tinyMCE.triggerSave();
+			dataString = $("#add_sermon_form").serialize();
+			$.ajax({
+				type: 'POST',
+				url: 'http://wibxi.com/apps/SM/www/savesermon.php',
+				data: dataString,
+				// Mostramos un mensaje con la respuesta de PHP
+				success: function(data) {
+					$('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
+				}
+			});        
+			return false;
+		});
+		$('#edit_sermon_form').on('submit',function(e){
+			e.preventDefault();
+			tinyMCE.triggerSave();
+			dataString = $("#edit_sermon_form").serialize();
+			$.ajax({
+				type: 'POST',
+				url: 'http://wibxi.com/apps/SM/www/save_edit_sermon.php',
+				data: dataString,
+				// Mostramos un mensaje con la respuesta de PHP
+				success: function(data) {
+					 $('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
+					}
+				});        
+			return false;
 			});
+	});
 	function initData(){
 		$.getJSON(userDataUrl, function(userData){
 			var uname = userData[0].name;
@@ -878,18 +716,20 @@ tinymce.init({
 				var sTotal=sermonData[0].total;
 			}
 			$.each(sermonData,function(i,item){
-				soutput+='<li><a href="#sermon-content" onclick="sermonContentId(\'' +item.id+'\');"><h3>'+item.title+'</h3><p><strong>Tema: '+item.tag+'</strong></p><p>Creado en '+item.date_added+'</p>'+item.date_edited+'</a><a href="#optionspanel" onclick="sermonContentId(\'' +item.id+'\');" data-theme="b" data-icon="gear" class="ui-btn-right">Opciones</a></li>';
+				soutput+='<li><a href="#sermon-content" onclick="sermonContentId(\'' +item.id+'\');"><h3>'+item.title+'</h3><p><strong>Tema: '+item.tag+'</strong></p><p>Creado en '+item.date_added+'</p>'+item.date_edited+'</a><a href="#optionspopup" data-rel="popup" data-position-to="origin" class="list-options ui-btn-right" onclick="sermonContentId(\'' +item.id+'\');">Opciones</a></li>';
 			});
 			$('#sermonlist').html(soutput);
-			$('#sermonlist:not(:has(li))').append("<li>No se han creado sermones aún</li>")
+			$('#sermonlist:not(:has(li))').append("<li style='text-align:center;'>No tiene ningún sermón</li>")
 			$('#sermonlist').listview().listview("refresh");
 			$('.sermoncount').text(sTotal);
+			$('#add_sermon_form').trigger("reset");
 		});
+		$('#edit_sermon_form').trigger('reset');
 	}
 </script>
 <script type="text/javascript">
 	function sermonContentId(id){
-		sermonContentUrl = 'http://wibxi.com/apps/Sermon_Manager/www/sermoncontent.php?s='+id;
+		sermonContentUrl = 'http://wibxi.com/apps/SM/www/sermoncontent.php?s='+id;
 		$.getJSON(sermonContentUrl, function(sermonContentData){
 			var coutput="";
 			var sermonid=id;
@@ -898,35 +738,62 @@ tinymce.init({
 			var sermoncontent=sermonContentData[0].content;
 			var account=sermonContentData[0].account;
 			$.each(sermonContentData,function(ci,citem){
-				coutput+='<h2>'+citem.title+'</h2>';
+				coutput+='<h2 class="title">'+citem.title+'</h2>';
+				coutput+='<h5 class="title">Tema: '+citem.tag+'</h5>';
 				coutput+='<div>'+citem.content+'</div>';
 				coutput+='<hr/>';
-				coutput+='<h4>Notas</h4>';
-				coutput+='<div>'+citem.notes+'</div>';
 
 			});
 			$('#sermon-content-content').html(coutput);
 			$('#editId').val(sermonid);
 			$('#editTitle').val(sermontitle);
 			$('#editTag').val(sermontag);
-			$('#delete-sermon').on('click',function(e){
-				  if (confirm("Seguro que desea borrar este sermon?")){
-				  e.preventDefault();
-				//dataString ="id=",
-			  $.ajax({
-					type: 'POST',
-					url: 'http://wibxi.com/apps/Sermon_Manager/www/delete_sermon.php?id='+sermonid,
+			//$('#delete-sermon').on('click',function(e){
+			//	  if (confirm("Seguro que desea borrar este sermon?")){
+			//	  e.preventDefault();
+			//  $.ajax({
+			//		type: 'POST',
+			//		url: 'http://wibxi.com/apps/SM/www/delete_sermon.php?id='+sermonid,
 					//data: dataString,
 					// Mostramos un mensaje con la respuesta de PHP
-					success: function(data) {
-						 $('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
-						}
-					 })        
+			//		success: function(data) {
+			//			$('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
+			//			$('#optionspopup').popup("close");
+			//			}
+			//		 })        
 				//return false;
-				console.log("Borrado");
-				  }
-				
+			//	console.log("Borrado");
+				$("#delete-sermon").on("click",function(){
+					deleteSermonPopup();
 				});
+	
+				function deleteSermonPopup(){
+					navigator.notification.confirm(
+						"¿Seguro que desea Eliminar este sermón?", 
+					function(buttonDeleteIndex){
+						ConfirmDeletation(buttonDeleteIndex);
+					}, 
+					"Borrar sermón", 
+					"Si,No"
+					); 
+				};
+				function ConfirmDeletation(deleteStat){
+					if(deletetStat == "1"){
+						$.ajax({
+							type: 'POST',
+							url: 'http://wibxi.com/apps/SM/www/delete_sermon.php?id='+sermonid,
+							//data: dataString,
+							// Mostramos un mensaje con la respuesta de PHP
+							success: function(data) {
+								$('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
+								$('#optionspopup').popup("close");
+							}
+						});
+					}else{
+						return;
+					};
+				};
+			
 			tinyMCE.activeEditor.setContent(sermoncontent);
 			//$('#editContent').html(sermoncontent)
 		});	
@@ -934,7 +801,7 @@ tinymce.init({
 </script>
 <script>
 	document.addEventListener("backbutton", function(e){
-		if($.mobile.activePage.is('#page')){
+		if($.mobile.activePage.is('#page'),$.mobile.activePage.is('#login')){
             exitAppPopup();
         }else{
            navigator.app.backHistory();
