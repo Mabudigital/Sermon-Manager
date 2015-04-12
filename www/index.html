@@ -83,7 +83,7 @@ username=localStorage.getItem('username');
 		<ul id="sermonlist" data-role="listview" data-filter="true" data-input="#filterable-input"></ul>
 	</div>
 	<!--options popup-->
-<div data-role="popup" data-corners="false" id="optionspopup" class="options-popup">
+<div data-role="popup" data-corners="false" id="optionspopup" class="options-popup" data-position-to="origin">
 	<ul data-role="listview"></ul>
 </div>
 <!--/options popup-->
@@ -135,16 +135,7 @@ username=localStorage.getItem('username');
 			<input type="submit" value="Guardar" />
 		</form>
 	</div>
-	<!--Bible panel-->
-	<div data-role="panel" id="biblepanel" data-position="right" data-display="overlay" data-position-fixed="false" data-theme="b">
-		<h2 class="connection">Herramientas </h2>
-		<ul data-role="listview" data-inset="false">
-			<li><a  href="#biblia"><h3>Biblia</h3></a></li>
-			<li><a href="#reference"><h3>Referencias</h3></a></li>
-			<li><a href="#" data-rel="close"><h3>Cerrar</h3></a></li>
-		</ul>
-	</div>
-	<!--/Bible panel-->
+
 </div>
 <!-- /Create sermont-->
 <!-- Edit sermon-->
@@ -172,16 +163,6 @@ username=localStorage.getItem('username');
 			<input type="submit" value="Guardar" />
 		</form>
 	</div>
-	<!--Bible panel-->
-	<div data-role="panel" id="biblepanel" data-position="right" data-display="overlay" data-position-fixed="false" data-theme="b">
-		<h2 class="connection">Herramientas </h2>
-		<ul data-role="listview" data-inset="false">
-			<li><a  href="#biblia"><h3>Biblia</h3></a></li>
-			<li><a href="#reference"><h3>Referencias</h3></a></li>
-			<li><a href="#" data-rel="close"><h3>Cerrar</h3></a></li>
-		</ul>
-	</div>
-	<!--/Bible panel-->
 </div>
 <!-- /Edit sermont-->
 <!--Bible-->
@@ -549,6 +530,16 @@ username=localStorage.getItem('username');
 	</div>
 </div>
 <!--config panel-->
+<!--Bible panel-->
+	<div data-role="panel" id="biblepanel" data-position="right" data-display="overlay" data-position-fixed="false" data-theme="b">
+		<h2 class="connection">Herramientas </h2>
+		<ul data-role="listview" data-inset="false">
+			<li><a  href="#bible"><h3>Biblia</h3></a></li>
+			<li><a href="#reference"><h3>Referencias</h3></a></li>
+			<li><a href="#" data-rel="close"><h3>Cerrar</h3></a></li>
+		</ul>
+	</div>
+	<!--/Bible panel-->
 <div id="result"></div>
 <script type="text/javascript">
 tinymce.init({
@@ -762,7 +753,7 @@ tinymce.init({
 			//		 })        
 				//return false;
 			//	console.log("Borrado");
-				$("#delete-sermon").on("click",function(){				
+				$("#delete-sermon"+sermonid).on("click",function(){				
 					deleteSermonPopup();
 				});
 				function deleteSermonPopup(){

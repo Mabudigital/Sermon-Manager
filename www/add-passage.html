@@ -93,7 +93,7 @@
 			$(document).ready(function(){
 				var bibleVersion=localStorage.getItem("bibleVersion");	
 				var passage;
-				$('#verse-input').mouseout(function(){
+				$('#verse-input').keyup(function(){
 					var book = $('#selectbook option:selected').val();
 					var libro = $('#selectbook option:selected').text();
 					var verse = $('#verse-input').val();
