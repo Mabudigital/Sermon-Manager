@@ -45,3 +45,4 @@ h6.title,h5.title,h4.title,h3.title,h2.title,h1.title{text-align:center;}
 .ins-passage{color:#F00;}
 .ins-passage::before{color:#F00;content:"«";}
 .ins-passage::after{color:#F00;content:"»";}
+#getverse{width:300px;top:50px;}

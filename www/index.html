@@ -414,7 +414,7 @@ username=localStorage.getItem('username');
 				});
 			</script>
 			<div  id="results"></div>
-			<div id="getverse"  data-role="popup" data-theme="b" data-position-to="window" data-transition="slidedown" style="max-width:100%;">
+			<div id="getverse"  data-role="popup" data-theme="b" data-position-to="window" data-transition="slidedown">
 					<script>
 						function getVerse(v){
 							$('#passage').load('http://api.biblia.com/v1/bible/content/'+bibleVersion+'.html?passage='+v+'&style=fullyFormatted&culture=es&key=5a5aa44d5d9880be2eced64ce8609b24');
