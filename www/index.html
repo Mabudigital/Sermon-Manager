@@ -615,17 +615,17 @@ tinymce.init({
 		});
 		// Interceptamos el evento submit
 		 $('#login-form').submit(function(e){
-			   e.preventDefault();
-				dataString = $("#login-form").serialize();
-			  $.ajax({
-					type: 'POST',
-					url: 'http://wibxi.com/apps/SM/www/login.php',
-					data: dataString,
-					// Mostramos un mensaje con la respuesta de PHP
-					success: function(data) {
-						 $('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
-						}
-					 })        
+			 e.preventDefault();
+			dataString = $("#login-form").serialize();
+			 $.ajax({
+				type: 'POST',
+				url: 'http://wibxi.com/apps/SM/www/login.php',
+				data: dataString,
+				// Mostramos un mensaje con la respuesta de PHP
+				success: function(data) {
+					 $('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
+				}
+			})        
 				return false;
 				});
 	// Interceptamos el evento submit
@@ -738,25 +738,9 @@ tinymce.init({
 			$('#editTitle').val(sermontitle);
 			$('#editTag').val(sermontag);
 			$('#optionspopup ul').html('<li><a  href="#editsermon"><h3>Editar</h3></a></li><li><a id="delete-sermon'+sermonid+'" href="#"><h3>Borrar</h3></a></li>');
-			//$('#delete-sermon').on('click',function(e){
-			//	  if (confirm("Seguro que desea borrar este sermon?")){
-			//	  e.preventDefault();
-			//  $.ajax({
-			//		type: 'POST',
-			//		url: 'http://wibxi.com/apps/SM/www/delete_sermon.php?id='+sermonid,
-					//data: dataString,
-					// Mostramos un mensaje con la respuesta de PHP
-			//		success: function(data) {
-			//			$('#result').hide().html(data).fadeIn(300).delay(600).fadeOut(300);
-			//			$('#optionspopup').popup("close");
-			//			}
-			//		 })        
-				//return false;
-			//	console.log("Borrado");
-				$("#delete-sermon"+sermonid).on("click",function(){
-					console.log("sermon: "+sermonid);
-					deleteSermonPopup();
-				});
+			$("#delete-sermon"+sermonid).on("click",function(){
+				deleteSermonPopup();
+			});
 				function deleteSermonPopup(){
 					navigator.notification.confirm(
 						"¿Seguro que desea eliminar este sermón?", 
@@ -836,6 +820,13 @@ tinymce.init({
 				return;
 			};
 		};
+	document.addEventListener("deviceready", onDeviceReady, false);
+	function onDeviceReady() {
+		StatusBar.show();
+		StatusBar.overlaysWebView(false);
+		StatusBar.styleLightContent();
+		StatusBar.backgroundColorByHexString("#008c8c");
+	}
 </script>
 </body>
 </html>
