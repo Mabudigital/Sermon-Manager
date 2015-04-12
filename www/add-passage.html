@@ -104,7 +104,7 @@
 					
 				});
 				$('#add').on("click",function(){
-					parent.tinymce.activeEditor.selection.setContent("<div class='ins-passage'>"+passage+"</div>");
+					parent.tinymce.activeEditor.selection.setContent("<div class='ins-passage'>"+passage+"</div></br>");
 					//parent.tinymce.activeEditor.selection.setContent('<a href="#passagepopup"  onclick="getSermonVerse(\''+book+verse+'\');" data-rel="popup" data-verse="'+book+verse+'">'+libro+' '+verse+'</a>');			
 					parent.tinymce.activeEditor.windowManager.close();
 				});
