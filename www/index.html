@@ -84,10 +84,7 @@ username=localStorage.getItem('username');
 	</div>
 	<!--options popup-->
 <div data-role="popup" data-corners="false" id="optionspopup" class="options-popup">
-	<ul data-role="listview">
-		<li><a  href="#editsermon"><h3>Editar</h3></a></li>
-		<li><a id="delete-sermon" href="#"><h3>Borrar</h3></a></li>
-	</ul>
+	<ul data-role="listview"></ul>
 </div>
 <!--/options popup-->
 </div>
@@ -697,8 +694,8 @@ tinymce.init({
 			return false;
 			});
 	});
-	function initData(username){
-		console.log('username: '+username);
+	function initData(){
+		username=localStorage.getItem('username');
 		sermonDataUrl = 'http://wibxi.com/apps/SM/www/sermondata.php?u='+username;
 		userDataUrl = 'http://wibxi.com/apps/SM/www/userdata.php?u='+username;
 		$.getJSON(userDataUrl, function(userData){
@@ -717,7 +714,9 @@ tinymce.init({
 			}
 			$.each(sermonData,function(i,item){
 				soutput+='<li><a href="#sermon-content" onclick="sermonContentId(\'' +item.id+'\');"><h3>'+item.title+'</h3><p><strong>Tema: '+item.tag+'</strong></p><p>Creado en '+item.date_added+'</p>'+item.date_edited+'</a><a href="#optionspopup" data-rel="popup" data-position-to="origin" class="list-options ui-btn-right" onclick="sermonContentId(\'' +item.id+'\');">Opciones</a></li>';
+				
 			});
+			
 			$('#sermonlist').html(soutput);
 			$('#sermonlist:not(:has(li))').append("<li style='text-align:center;'>No tiene ningún sermón</li>")
 			$('#sermonlist').listview().listview("refresh");
@@ -742,12 +741,12 @@ tinymce.init({
 				coutput+='<h5 class="title">Tema: '+citem.tag+'</h5>';
 				coutput+='<div>'+citem.content+'</div>';
 				coutput+='<hr/>';
-
 			});
 			$('#sermon-content-content').html(coutput);
 			$('#editId').val(sermonid);
 			$('#editTitle').val(sermontitle);
 			$('#editTag').val(sermontag);
+			$('#optionspopup ul').html('<li><a  href="#editsermon"><h3>Editar</h3></a></li><li><a id="delete-sermon'+sermonid+'" href="#"><h3>Borrar</h3></a></li>');
 			//$('#delete-sermon').on('click',function(e){
 			//	  if (confirm("Seguro que desea borrar este sermon?")){
 			//	  e.preventDefault();
