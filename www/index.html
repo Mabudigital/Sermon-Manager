@@ -753,21 +753,22 @@ tinymce.init({
 			//		 })        
 				//return false;
 			//	console.log("Borrado");
-				$("#delete-sermon"+sermonid).on("click",function(){				
+				$("#delete-sermon"+sermonid).on("click",function(){
+					console.log("sermon: "+sermonid);
 					deleteSermonPopup();
 				});
 				function deleteSermonPopup(){
 					navigator.notification.confirm(
-						"¿Seguro que desea Eliminar este sermón?", 
+						"¿Seguro que desea eliminar este sermón?", 
 					function(buttonDeleteIndex){
 						ConfirmDeletation(buttonDeleteIndex);
 					}, 
 					"Borrar sermón", 
 					"Si,No"
-					); 
+					) 
 				};
 				function ConfirmDeletation(deleteStat){
-					if(deletetStat == "1"){
+					if(deleteStat == "1"){
 						$.ajax({
 							type: 'POST',
 							url: 'http://wibxi.com/apps/SM/www/delete_sermon.php?id='+sermonid,
