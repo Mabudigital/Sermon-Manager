@@ -11,12 +11,6 @@
     <author href="http://wibxi.com" email="info@wibxi.com">
         Wibxi Team
     </author>
-	<gap:config-file platform="ios" parent="CFBundleShortVersionString">
-		<string>100</string>
-	</gap:config-file>
-	<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance">
-		<false/>
-	</gap:config-file>
 	<preference name="permissions" value="none" />
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="3.7.0" />          <!-- all: current version of PhoneGap -->
@@ -26,40 +20,12 @@
     <gap:platform name="android" />
 	<preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
-	<gap:platform name="ios" />
-	<preference name="webviewbounce"              value="false" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
-    <preference name="prerendered-icon"           value="true" />           <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
-    <preference name="stay-in-webview"            value="true" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
-    <preference name="detect-data-types"          value="true" />           <!-- ios: controls whether data types (such as phone no. and dates) are automatically turned into links by the system -->
-    <preference name="exit-on-suspend"            value="false" />          <!-- ios: if set to true, app will terminate when home button is pressed -->
 	<icon src="icon.png" />
     <icon gap:qualifier="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
     <icon gap:qualifier="mdpi" gap:platform="android" src="res/icon/android/icon-48-mdpi.png" />
     <icon gap:qualifier="hdpi" gap:platform="android" src="res/icon/android/icon-72-hdpi.png" />
     <icon gap:qualifier="xhdpi" gap:platform="android" src="res/icon/android/icon-96-xhdpi.png" />
-	<!-- iPhone 6 / 6+ -->
-	<icon src="res/icon/ios/icon-60@3x.png" gap:platform="ios" width="180" height="180" />
-	<!-- iPhone / iPod Touch  -->
-	<icon src="res/icon/ios/icon-60.png" gap:platform="ios" width="60" height="60" />
-	<icon src="res/icon/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
-	<!-- iPad -->
-	<icon src="res/icon/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
-	<icon src="res/icon/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
-	<!-- Settings Icon -->
-	<icon src="res/icon/ios/icon-small.png" gap:platform="ios" width="29" height="29" />
-	<icon src="res/icon/ios/icon-small@2x.png" gap:platform="ios" width="58" height="58" />
-	<!-- Spotlight Icon -->
-	<icon src="res/icon/ios/icon-40.png" gap:platform="ios" width="40" height="40" />
-	<icon src="res/icon/ios/icon-40@2x.png" gap:platform="ios" width="80" height="80" />
-	<!-- iPhone / iPod Touch -->
-	<icon src="res/icon/ios/icon.png" gap:platform="ios" width="57" height="57" />
-	<icon src="res/icon/ios/icon@2x.png" gap:platform="ios" width="114" height="114" />
-	<!-- iPad -->
-	<icon src="res/icon/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
-	<icon src="res/icon/ios/icon-72@2x.png" gap:platform="ios" width="144" height="144" />
-	<!-- iPad Spotlight and Settings Icon -->
-	<icon src="res/icon/ios/icon-50.png" gap:platform="ios" width="50" height="50" />
-	<icon src="res/icon/ios/icon-50@2x.png" gap:platform="ios" width="100" height="100" />	
+	
 	<!-- Plugins -->
     <!-- Core plugins -->
 	<gap:plugin name="org.apache.cordova.device" version="0.2.12" />
@@ -71,7 +37,6 @@
 	<gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
 	<gap:plugin name="org.apache.cordova.globalization" version="0.3.1" />
 	<gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
-	<gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
     <access origin="*"/>
 	<access origin="http://wibxi.com/apps/Sermon_Manager/*"/>
 	<access origin="http://api.biblia.com/v1/bible/*"/>
