@@ -20,12 +20,18 @@
     <gap:platform name="android" />
 	<preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+	<preference name="SplashScreen"               value="screen"/>
+    <preference name="SplashScreenDelay"          value="3000" />
 	<icon src="icon.png" />
     <icon gap:qualifier="ldpi" gap:platform="android" src="res/icon/android/icon-36-ldpi.png" />
     <icon gap:qualifier="mdpi" gap:platform="android" src="res/icon/android/icon-48-mdpi.png" />
     <icon gap:qualifier="hdpi" gap:platform="android" src="res/icon/android/icon-72-hdpi.png" />
     <icon gap:qualifier="xhdpi" gap:platform="android" src="res/icon/android/icon-96-xhdpi.png" />
-	
+	<gap:splash src="screen.png" />
+	<gap:splash gap:qualifier="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-portrait.png" />
+    <gap:splash gap:qualifier="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
+    <gap:splash gap:qualifier="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:qualifier="xhdpi" gap:platform="android" src="res/screen/android/screen-xhdpi-portrait.png" />
 	<!-- Plugins -->
     <!-- Core plugins -->
 	<gap:plugin name="org.apache.cordova.device" version="0.2.12" />
