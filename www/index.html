@@ -799,7 +799,7 @@ tinymce.init({
 </script>
 <script>
 	document.addEventListener("backbutton", function(e){
-		if($.mobile.activePage.is('#page'),$.mobile.activePage.is('#login')){
+		if($.mobile.activePage.is('#page') || $.mobile.activePage.is('#login')){
             exitAppPopup();
         }else{
            navigator.app.backHistory();
