@@ -521,7 +521,7 @@ username=localStorage.getItem('username');
 			</div>
 		</li>
 		<li><a href="#license">Acerca de esta aplicación</a></li>
-		<li><a id="logout" href="#">Desconectar</a></li>
+		<li><a id="logout" href="#">Cerrar sesión</a></li>
 		<li><a href="#" data-rel="close">Cerrar</a></li>
 	</ul>
 	<div id="savedPopup"  class="ui-content" data-role="popup" data-transition="slidedown" data-position="origin" data-theme="b">
@@ -767,9 +767,7 @@ tinymce.init({
 						return;
 					};
 				};
-			
-			tinyMCE.activeEditor.setContent(sermoncontent);
-			//$('#editContent').html(sermoncontent)
+			tinyMCE.activeEditor.setContent(sermoncontent);)
 		});	
 	};
 </script>
