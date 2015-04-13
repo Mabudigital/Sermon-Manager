@@ -711,7 +711,7 @@ tinymce.init({
 		$.getJSON(userDataUrl, function(userData){
 			var uname = userData[0].name;
 			var account= userData[0].account;
-			$('.welcome').text("Bienvenido "+uname);
+			$('.welcome').text("Bienvenido(a) "+uname);
 			$('#acc_number').val(account);
 			
 		});

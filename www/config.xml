@@ -43,6 +43,7 @@
 	<gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
 	<gap:plugin name="org.apache.cordova.globalization" version="0.3.1" />
 	<gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+	<gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
     <access origin="*"/>
 	<access origin="http://wibxi.com/apps/Sermon_Manager/*"/>
 	<access origin="http://api.biblia.com/v1/bible/*"/>
