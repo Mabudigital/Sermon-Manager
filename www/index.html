@@ -767,7 +767,7 @@ tinymce.init({
 						return;
 					};
 				};
-			tinyMCE.activeEditor.setContent(sermoncontent);)
+			tinyMCE.activeEditor.setContent(sermoncontent);
 		});	
 	};
 </script>
@@ -802,11 +802,11 @@ tinymce.init({
 		};
 	$("#logout").on("click",function(){
 		navigator.notification.confirm(
-			"¿Seguro que desea salir y desconectar?", 
+			"¿Seguro que desea cerrar su sesión?", 
 			function(buttonIndex){
 				ConfirmLogout(buttonIndex);
 			}, 
-			"Cerrar aplicación y desconectar", 
+			"cerrar sessión", 
 			"Si,No"
 			); 
 		});
@@ -818,13 +818,6 @@ tinymce.init({
 				return;
 			};
 		};
-	document.addEventListener("deviceready", onDeviceReady, false);
-	function onDeviceReady() {
-		StatusBar.show();
-		StatusBar.overlaysWebView(false);
-		StatusBar.styleLightContent();
-		StatusBar.backgroundColorByHexString("#008c8c");
-	}
 </script>
 </body>
 </html>
