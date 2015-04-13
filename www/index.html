@@ -67,7 +67,6 @@ username=localStorage.getItem('username');
 			</li>
 		</ul>
 	</div>
-	
 </div>
 <!--/Main page-->
 <!-- Sermon list-->
@@ -98,6 +97,15 @@ username=localStorage.getItem('username');
 	</div>
 	<div data-role="content" >
 		<div id="sermon-content-content" class="content-background"></div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-id="myfooter" style="position:fixed;bottom:0;">
+		<div data-role="navbar" >
+			<ul>
+				<li ><a id="incfont" href="#">A+</a></li>
+				<li ><a id="decfont" href="#">A-</a></li>
+			</ul>
+		</div>
+		<!-- /navbar -->
 	</div>
 	<div id="passagepopup"  data-role="popup" data-theme="b" data-position-to="window" data-transition="slidedown" style="max-width:100%;margin-top:25px;">
 		<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right" >Close</a>
@@ -549,6 +557,7 @@ tinymce.init({
 	elements:"content,editContent",
 	theme: "modern",
 	skin: "light",
+	content_css:"css/editor.css",
 	height: 200,
 	plugins: [
 		 "advlist autolink lists link charmap hr anchor paste",
@@ -683,6 +692,16 @@ tinymce.init({
 					}
 				});        
 			return false;
+			});
+			$('#incfont').click(function(){    
+				curSize= parseInt($('div[data-role="content"]').css('font-size')) + 2;
+				if(curSize<=20)
+					$('div[data-role="content"]').css('font-size', curSize);
+			});  
+			$('#decfont').click(function(){    
+				curSize= parseInt($('div[data-role="content"]').css('font-size')) - 2;
+				if(curSize>=12)
+					$('div[data-role="content"]').css('font-size', curSize);
 			});
 	});
 	function initData(){
