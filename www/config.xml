@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
+		xmlns:android   = "http://schemas.android.com/apk/res/android"
         id          = "com.wibxi.sermonmanager.free"
         version     = "1.0.0" >
     <!-- versionCode is optional and Android only -->
@@ -11,9 +12,9 @@
     <author href="http://wibxi.com" email="info@wibxi.com">
         Wibxi Team
     </author>
-    <gap:config-file platform="android" parent="/manifest" mode="add">
-	<uses-feature android:name="android.hardware.telephony" android:required="false" />
-   </gap:config-file>
+    <gap:config-file platform="android" parent="/manifest">
+		<uses-feature android:name="android.hardware.telephony" android:required="false"/>
+	</gap:config-file>
     <preference name="permissions" value="none" />
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="3.7.0" />          <!-- all: current version of PhoneGap -->
@@ -22,7 +23,6 @@
     <preference name="fullscreen"                 value="false" />           <!-- all: hides the status bar at the top of the screen -->
     <gap:platform name="android" />
     <preference name="android-minSdkVersion"      value="7" />              <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
-    <preference name="android-targetSdkVersion"   value="19" />
     <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->	<preference name="SplashScreen"               value="screen"/>
     <preference name="SplashScreenDelay"          value="5000" />
     <icon src="icon.png" />
@@ -32,9 +32,13 @@
     <icon gap:qualifier="xhdpi" gap:platform="android" src="res/icon/android/icon-96-xhdpi.png" />
     <gap:splash src="screen.png" />
     <gap:splash gap:qualifier="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-portrait.png" />
-    <gap:splash gap:qualifier="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
-    <gap:splash gap:qualifier="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
+    <gap:splash gap:qualifier="ldpi" gap:platform="android" src="res/screen/android/screen-ldpi-landscape.png" />
+	<gap:splash gap:qualifier="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-portrait.png" />
+    <gap:splash gap:qualifier="mdpi" gap:platform="android" src="res/screen/android/screen-mdpi-landscape.png" />
+	<gap:splash gap:qualifier="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
+	<gap:splash gap:qualifier="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-landscape.png" />
     <gap:splash gap:qualifier="xhdpi" gap:platform="android" src="res/screen/android/screen-xhdpi-portrait.png" />
+	<gap:splash gap:qualifier="xdpi" gap:platform="android" src="res/screen/android/screen-xdpi-landscape.png" />
     <!-- Screen compatibility-->
     <supports-screens android:anyDensity="true" android:resizeable="true" 
     android:smallScreens="true" 
