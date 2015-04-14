@@ -36,31 +36,12 @@
     <gap:splash gap:qualifier="hdpi" gap:platform="android" src="res/screen/android/screen-hdpi-portrait.png" />
     <gap:splash gap:qualifier="xhdpi" gap:platform="android" src="res/screen/android/screen-xhdpi-portrait.png" />
     <!-- Screen compatibility-->
-    <compatible-screens>
-    <!--no small size screens -->
-    <!--all normal size screens -->
-    <screen android:screenSize="normal" android:screenDensity="ldpi" />
-    <screen android:screenSize="normal" android:screenDensity="mdpi" />
-    <screen android:screenSize="normal" android:screenDensity="hdpi" />
-    <screen android:screenSize="normal" android:screenDensity="xhdpi" />
-
-    <!-- all large size screens -->
-    <screen android:screenSize="large" android:screenDensity="ldpi" />
-    <screen android:screenSize="large" android:screenDensity="mdpi" />
-    <screen android:screenSize="large" android:screenDensity="hdpi" />
-    <screen android:screenSize="large" android:screenDensity="xhdpi" />
-
-    <!-- all xlarge size screens -->
-    <screen android:screenSize="xlarge" android:screenDensity="ldpi" />
-    <screen android:screenSize="xlarge" android:screenDensity="mdpi" />
-    <screen android:screenSize="xlarge" android:screenDensity="hdpi" />
-    <screen android:screenSize="xlarge" android:screenDensity="xhdpi" />
-
-    <!-- Special case for Nexus 7 -->
-    <screen android:screenSize="large" android:screenDensity="tvdpi" />
-
-</compatible-screens>
-	<!-- Plugins -->
+    <supports-screens android:anyDensity="true" android:resizeable="true" 
+    android:smallScreens="true" 
+    android:normalScreens="true" 
+    android:largeScreens="true" 
+    android:xlargeScreens="true" />
+	<!-- Plugins --> 
     <!-- Core plugins -->
 	<gap:plugin name="org.apache.cordova.device" version="0.2.12" />
 	<gap:plugin name="org.apache.cordova.device-motion" version="0.2.10" />
