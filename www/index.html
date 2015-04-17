@@ -369,7 +369,7 @@ username=localStorage.getItem('username');
 			}else{
 				var newUrl= 'http://api.biblia.com/v1/bible/content/'+bibleVersion+'.html?passage='+bN.replace(" ","%20")+chNum+'&style=fullyFormattedWithFootnotes&culture=es&redLetter=true&key=5a5aa44d5d9880be2eced64ce8609b24';
 			}
-			$('#chapter-content-wrapper h2').html(bN+" "+chNum);
+			$('#chapter-content-wrapper h2').html(bN+" "+chNum+" <span style='font-size:75%;font-weight:300;'>("+bibleVersion+")</span>");
 			$('#chapter-content-wrapper .content').load(newUrl);
 		});
 	}
@@ -442,7 +442,7 @@ username=localStorage.getItem('username');
 		<a class="blue ui-btn-right" data-shadow="false" href="#config_panel"><img src="images/ic_action_settings.png"/></a>
 	</div>	
 	<div data-role="content" class="content-background">
-		<h1>Acuerdo de aceptación de licencia de usuario</h1>
+		<h3>Acuerdo de aceptación de licencia de usuario</h3>
 		<p>Copyrights 2015 Wibxi - Manuel Echevarría. All Rights Reserved.</p>
 		<p>El producto está protegido por la Ley Federal de Derecho de Autor. Wibxi y Manuel Echevarría conserva la titularidad y la propiedad del producto. Usted está autorizado a utilizar este producto en los siguientes términos y condiciones:</p>
 			<p>LICENCIA - El titular de la licencia se define como la persona o empresa que utiliza el producto de software. Wibxi y Manuel Echevarría concede al licenciatario una licencia no exclusiva autoriza al licenciatario a utilizar el producto encerrado en un ordenador a la vez. El licenciatario también podrá ser distribuido este producto a uno, y sólo un servidor web para hospedar el Programa. Por favor, póngase en contacto con Wibxi y Manuel Echevarría si usted requiere licencias adicionales. El uso de este producto por más de un individuo o por alguien que no los termina licenciatario, sin notificación, esta licencia y el derecho de usar este producto.";
@@ -519,7 +519,7 @@ username=localStorage.getItem('username');
 		<li data-role="list-divider">Configuración</li>
 		<li><h3>Versión de la biblia</h3>
 			<div class="ui-field-contain">
-				<select id="bible-version-select" name="bible-version-select" data-mini="true">
+				<select id="panel-bible-version-select" name="panel-bible-version-select" data-mini="true">
 					<option value="RVR60">Reina Valera Revisada(1960)</option>
 					<option value="RVA">Reina Valera Actializada</option>
 				</select>
@@ -534,7 +534,7 @@ username=localStorage.getItem('username');
 	</ul>
 	<div id="savedPopup"  class="ui-content" data-role="popup" data-transition="slidedown" data-position="origin" data-theme="b">
 		<a href="#" data-rel="back" data-role="button" data-icon="delete" data-iconpos="notext" class="ui-btn-right" >Close</a>
-		<p style="text-align:center;">Versión guardada</p>
+		<p style='text-align:center;'></p>
 	</div>
 </div>
 <!--config panel-->
@@ -587,23 +587,28 @@ tinymce.init({
 });
 </script>
 <script type="text/javascript">
-	sermonDataUrl = '';
-	userDataUrl = '';
-	$("#userId").val(username);
-	bv="";
-	bibleVersion=localStorage.getItem("bibleVersion");
-	$(document).ready(function(){
-		initData();
-		$("#bible-version-submit").on("click",function(){
-			bv= $("#bible-version-select option:selected").val();
-			localStorage.setItem("bibleVersion",bv);
-			bibleVersion=localStorage.getItem("bibleVersion");
-			$("#savedPopup").popup("open");
-			$("#config_panel").panel( "close" );
-		})
+sermonDataUrl = '';
+userDataUrl = '';
+$("#userId").val(username);
+bv = '';
+bibleVersion = localStorage.getItem("bibleVersion");
+document.addEventListener("deviceready",function(){
+	initData(username);
+	$("#bible-version-submit").on("click",function(){
+		bv = $("#panel-bible-version-select").val();
+		var bvText = $("#panel-bible-version-select option:selected").text();
+		localStorage.setItem("bibleVersion",bv);
+		bibleVersion=localStorage.getItem("bibleVersion");
+		$("#savedPopup p").html("Versión "+bvText+" guardada")
+		$("#savedPopup").popup("open");
+		$("#config_panel").panel( "close" );
+		setTimeout(function(){
+			$("#savedPopup").popup("close");
+		},3000);
+	});
 		$("#search_btn").on("click",function(){
 			$(".ui-input-search").toggle();
-		})
+		});
 		if(username != null){
 			$.mobile.changePage("#page");
 		}else{$.mobile.changePage("#login");
@@ -703,7 +708,8 @@ tinymce.init({
 				if(curSize>=12)
 					$('div[data-role="content"]').css('font-size', curSize);
 			});
-	});
+			
+});
 	function initData(){
 		username=localStorage.getItem('username');
 		sermonDataUrl = 'http://wibxi.com/apps/SM/www/sermondata.php?u='+username;
