@@ -594,12 +594,13 @@ tinymce.init({
 	bibleVersion=localStorage.getItem("bibleVersion");
 	$(document).ready(function(){
 		initData();
-		$("#bible-version-submit").on("click",function(){
-			bv= $("#bible-version-select option:selected").val();
+		$("#bible-version-select").on("click",function(){
+			bv= $("select[name='bible-version-select']").val();
 			localStorage.setItem("bibleVersion",bv);
 			bibleVersion=localStorage.getItem("bibleVersion");
 			$("#savedPopup").popup("open");
 			$("#config_panel").panel( "close" );
+			
 		})
 		$("#search_btn").on("click",function(){
 			$(".ui-input-search").toggle();
