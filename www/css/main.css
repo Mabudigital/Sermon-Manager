@@ -46,3 +46,7 @@ h6.title,h5.title,h4.title,h3.title,h2.title,h1.title{text-align:center;}
 .ins-passage::before{color:#F00;content:"«";}
 .ins-passage::after{color:#F00;content:"»";}
 #getverse{width:300px;top:50px;}
+#time{color:#333;font-size:26px;padding:0;}
+#time.intime{color:green;}
+#time.outtime{color:red;}
+#time.ui-btn-active{background:#f6f6f6;}

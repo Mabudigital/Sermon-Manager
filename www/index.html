@@ -66,6 +66,7 @@ username=localStorage.getItem('username');
 				</a>
 			</li>
 		</ul>
+		
 	</div>
 </div>
 <!--/Main page-->
@@ -707,8 +708,7 @@ document.addEventListener("deviceready",function(){
 				curSize= parseInt($('div[data-role="content"]').css('font-size')) - 2;
 				if(curSize>=12)
 					$('div[data-role="content"]').css('font-size', curSize);
-			});
-			
+			});	
 });
 	function initData(){
 		username=localStorage.getItem('username');
